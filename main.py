@@ -1,10 +1,12 @@
 def main():
     graf = [
-        [0,3,0,7,0],
-        [3,0,4,2,0],
-        [0,4,0,5,6],
-        [7,2,5,0,4],
-        [0,0,6,4,0],
+        [0,3,0,7,0,8,0],
+        [3,0,4,2,0,0,0],
+        [0,4,0,5,6,0,0],
+        [7,2,5,0,8,3,0],
+        [0,0,6,8,0,0,0],
+        [8,0,0,3,0,0,1],
+        [0,0,0,0,0,1,0],
     ]
 
     # simpul a = 0
@@ -35,8 +37,12 @@ def main():
         next_pointer = simpul_tersedia.pop(simpul_tersedia.index(simpul_minimal))
         pointer = next_pointer[0]
 
-    print(simpul_dipilih)
-    
+    # print(simpul_dipilih)
+    print(f'start/end nodes: {awal} -> {tujuan}')
+    simpul_dipilih = list(simpul_dipilih)
+    print(f'shortest path: {[lst[0] for lst in simpul_dipilih]}')
+    print(f'total distance: {sum([lst[2] for lst in simpul_dipilih])}')
+
 
 if __name__ == '__main__':
     main()
