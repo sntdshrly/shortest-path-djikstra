@@ -36,3 +36,31 @@ def cek_minimal_jarak_simpul(simpul_sekarang, kandidat, simpul_sebelumnya, index
             simpul_sekarang[index][1] = simpul_sebelumnya[-1][0]
             simpul_sekarang[index][2] = kandidat[index_simpul]+simpul_sebelumnya[-1][2]
 
+
+INFINITY = float('inf')
+
+def dijkstra_2(graf, awal):
+    L = [None] * len(graf)
+    for i in range(len(graf)):
+        L[i] = [INFINITY, None]
+    
+    L[awal] = [0, None]
+    S = []
+
+    for k in range(len(graf)):
+        mini = INFINITY
+        for j in range(len(graf)):
+            if L[j][0] < mini and j not in S:
+                mini = L[j][0]
+                minind = j
+        # [minind, , mini]
+        S.append(minind)
+
+        for i in [l for l in range(len(graf)) if l not in S]:
+            if graf[minind][i] != 0:
+                if L[i][0] > L[minind][0] + graf[minind][i]:
+                    L[i][0] = L[minind][0] + graf[minind][i]
+                    L[i][1] = minind
+                    # L[i] = L[minind] + graf[minind][i]
+
+    return L
