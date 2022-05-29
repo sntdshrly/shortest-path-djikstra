@@ -28,12 +28,57 @@
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
-        L.marker([-6.88643,107.58069]).addTo(map);
-        L.marker([-6.88722, 107.58114]).addTo(map);
-        L.polygon([
-            [-6.88643,107.58069],
-            [-6.88722, 107.58114]
-        ]).addTo(map);
+
+        // Node
+        // R - Restaurant
+        // M - Market
+        // B - Bank
+        // H - Hotel
+        // S - SPBU
+
+        L.marker([-6.88643,107.58069]).addTo(map); // Universitas Kristen Maranatha
+        L.marker([-6.886967, 107.581161]).addTo(map); // Terazza (R)
+        L.marker([-6.887382, 107.581094]).addTo(map); // Permata Surya Sumantri (B)
+        L.marker([-6.887572, 107.581089]).addTo(map); // Wibisana (R)
+        L.marker([-6.887588, 107.581528]).addTo(map); // Indomaret (M)
+        L.marker([-6.88738, 107.581681]).addTo(map); // Inti Laut (R)
+        L.marker([-6.888509, 107.581671]).addTo(map); // Circle K (M)
+        L.marker([-6.885594, 107.581622]).addTo(map); // Indomaret (M)
+        L.marker([-6.885344, 107.581067]).addTo(map); // BNP (B)
+        L.marker([-6.88521, 107.581217]).addTo(map); // BCA (B)
+        L.marker([-6.885197, 107.581537]).addTo(map); // Take Ichi Japanese Cafe (R)
+        L.marker([-6.885178, 107.581099]).addTo(map); // Tujuh Sebelas (M)
+        L.marker([-6.883174, 107.581011]).addTo(map); // The Majesty Hotel (H)
+        L.marker([-6.883589, 107.58248]).addTo(map); // Martabak Bolu Golden Bell (R)
+        L.marker([-6.88261, 107.581364]).addTo(map); // SPBU (S)
+        L.marker([-6.885022, 107.583322]).addTo(map); // SM Residence Pasteur (H)
+        L.marker([-6.885516, 107.583295]).addTo(map); // FullMar House (H)
+        L.marker([-6.889073, 107.581652]).addTo(map); // SPBU (S)
+        L.marker([-6.889166, 107.582127]).addTo(map); // Verona Palace (H)
+        L.marker([-6.889154, 107.582271]).addTo(map); // Sugar Rush (R)
+
+        // Code For Making a Line or Polygon
+        // L.polygon([
+        //     [-6.88643,107.58069],
+        //     [-6.886967, 107.581161],
+        //     [-6.887382, 107.581094],
+        // ]).addTo(map);
+
+        // Pop Up For Clicking The Maps
+        var popup = L.popup();
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+        map.on('click', onMapClick);
+
+        // Count Distance Between 2 Points
+        var finalPoint=(L.latLng(-6.88643,107.58069));
+        var startPoint=(L.latLng(-6.88722, 107.58114));
+        dist = finalPoint.distanceTo(startPoint);
+        console.log(dist);
     </script>
 </body>
 </html>
