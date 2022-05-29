@@ -13,14 +13,57 @@
     crossorigin=""></script>
     <style>
         #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
+            height: 100vh;
             width: 100%;
         }
     </style>
 </head>
 <body>
+    <select onchange="distance()" name="" id="start">
+        <option value="0">Universitas Kristen Maranatha</option>
+        <option value="1">Terazza (R)</option>
+        <option value="2">Permata Surya Sumantri (B)</option>
+        <option value="3">Wibisana (R)</option>
+        <option value="4">Indomaret (M)</option>
+        <option value="5">Inti Laut (R)</option>
+        <option value="6">Circle K (M)</option>
+        <option value="7">Indomaret (M)</option>
+        <option value="8">BNP (B)</option>
+        <option value="9">BCA (B)</option>
+        <option value="10">Take Ichi Japanese Cafe (R)</option>
+        <option value="11">Tujuh Sebelas (M)</option>
+        <option value="12">The Majesty Hotel (H)</option>
+        <option value="13">Martabak Bolu Golden Bell (R)</option>
+        <option value="14">SPBU (S)</option>
+        <option value="15">SM Residence Pasteur (H)</option>
+        <option value="16">FullMar House (H)</option>
+        <option value="17">SPBU (S)</option>
+        <option value="18">Verona Palace (H)</option>
+        <option value="19">Sugar Rush (R)</option>
+    </select>
+    <select onchange="distance()" name="" id="finish">
+        <option value="0">Universitas Kristen Maranatha</option>
+        <option value="1">Terazza (R)</option>
+        <option value="2">Permata Surya Sumantri (B)</option>
+        <option value="3">Wibisana (R)</option>
+        <option value="4">Indomaret (M)</option>
+        <option value="5">Inti Laut (R)</option>
+        <option value="6">Circle K (M)</option>
+        <option value="7">Indomaret (M)</option>
+        <option value="8">BNP (B)</option>
+        <option value="9">BCA (B)</option>
+        <option value="10">Take Ichi Japanese Cafe (R)</option>
+        <option value="11">Tujuh Sebelas (M)</option>
+        <option value="12">The Majesty Hotel (H)</option>
+        <option value="13">Martabak Bolu Golden Bell (R)</option>
+        <option value="14">SPBU (S)</option>
+        <option value="15">SM Residence Pasteur (H)</option>
+        <option value="16">FullMar House (H)</option>
+        <option value="17">SPBU (S)</option>
+        <option value="18">Verona Palace (H)</option>
+        <option value="19">Sugar Rush (R)</option>
+    </select>
+    <div id="result"></div>
     <div id="map"></div>
     <script>
         var map = L.map('map').setView([-6.88727, 107.58082], 18);
@@ -73,12 +116,43 @@
                 .openOn(map);
         }
         map.on('click', onMapClick);
-
+    </script>
+    <script>
         // Count Distance Between 2 Points
-        var finalPoint=(L.latLng(-6.88643,107.58069));
-        var startPoint=(L.latLng(-6.88722, 107.58114));
-        dist = finalPoint.distanceTo(startPoint);
-        console.log(dist);
+        const coord = {
+            0 : [-6.88643, 107.58069],
+            1 : [-6.886967, 107.581161],
+            2 : [-6.887382, 107.581094],
+            3 : [-6.887572, 107.581089],
+            4 : [-6.887588, 107.581528],
+            5 : [-6.88738, 107.581681],
+            6 : [-6.888509, 107.581671],
+            7 : [-6.885594, 107.581622],
+            8 : [-6.885344, 107.581067],
+            9 : [-6.88521, 107.581217],
+            10 : [-6.885197, 107.581537],
+            11 : [-6.885178, 107.581099],
+            12 : [-6.883174, 107.581011],
+            13 : [-6.883589, 107.58248],
+            14 : [-6.88261, 107.581364],
+            15 : [-6.885022, 107.583322],
+            16 : [-6.885516, 107.583295],
+            17 : [-6.889073, 107.581652],
+            18 : [-6.889166, 107.582127],
+            19 : [-6.889154, 107.582271],
+        };
+    
+        const distance = () => {
+            var start = document.getElementById('start').value;
+            var finish = document.getElementById('finish').value;
+
+            var finalPoint=(L.latLng(coord[finish][0], coord[finish][1]));
+            var startPoint=(L.latLng(coord[start][0], coord[start][1]));
+            dist = finalPoint.distanceTo(startPoint);
+            
+            let result = document.getElementById('result');
+            result.innerHTML = Math.floor(dist);
+        }
     </script>
 </body>
 </html>
