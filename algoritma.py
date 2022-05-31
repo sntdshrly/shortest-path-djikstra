@@ -1,4 +1,4 @@
-def dijkstra(awal : int, tujuan : int, graf : list) -> list:
+def dijkstra_2(awal : int, tujuan : int, graf : list) -> list:
     pointer = awal
     simpul_tersedia = []
     simpul_dipilih = [[awal,None,0]]
@@ -39,7 +39,7 @@ def cek_minimal_jarak_simpul(simpul_sekarang, kandidat, simpul_sebelumnya, index
 
 INFINITY = float('inf')
 
-def dijkstra_2(graf, awal):
+def dijkstra(graf, awal):
     L = [None] * len(graf)
     for i in range(len(graf)):
         L[i] = [INFINITY, None]
@@ -64,3 +64,17 @@ def dijkstra_2(graf, awal):
                     # L[i] = L[minind] + graf[minind][i]
 
     return L
+
+def lintasan_2(simpul, graf_hasil):
+    if simpul[1] == None:
+        return ' Selesai'
+    print('<-', end='')
+    print(simpul[1], end='')
+    return lintasan_2(graf_hasil[simpul[1]], graf_hasil)
+
+def lintasan(akhir, simpul, graf_hasil):
+    array_simpul = [akhir]
+    while simpul[1] != None:
+        array_simpul.append(simpul[1])
+        simpul = graf_hasil[simpul[1]]
+    return array_simpul
