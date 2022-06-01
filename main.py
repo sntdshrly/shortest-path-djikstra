@@ -19,22 +19,7 @@ def shortestPath(start, end):
     }
 
 def main():
-
-    graf = read_csv_to_matrix('assets/Matriks.csv')
-
-    awal = 0
-    akhir = 12
-
-    simpul_dipilih = dijkstra(graf,awal)
-
-    print(f'start/end nodes: {awal} -> {akhir}')
-    print('Tabel Hasil :')
-    for tujuan, simpul in enumerate(simpul_dipilih):
-        print(f"Simpul Tujuan : {tujuan}\tLintasan Terakhir : {simpul[1]}\tJarak : {simpul[0]}")
-
-    print('shortest path:')
-    print(lintasan(akhir, simpul_dipilih[akhir], simpul_dipilih))
-    print(f'total distance: {simpul_dipilih[akhir][0]}')
+    pass
 
 
 if __name__ == '__main__':

@@ -1,27 +1,19 @@
-from typing import Union
-
+# Import untuk membuat server
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+# Import algoritma
 from main import fetchAllNodes, shortestPath
 
+# Inisialisasi server
 app = FastAPI()
 
-origins = [
-    "*",
-]
+# Mengatur supaya server bisa diakses dari mana saja
+origins = ["*"]
+app.add_middleware(CORSMiddleware,allow_origins=origins,allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+# Daftar URL dari server
 
 @app.get("/list")
 def list():
@@ -31,6 +23,3 @@ def list():
 def shortest_path(start: int, end: int):
     return shortestPath(start, end)
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
