@@ -9,22 +9,119 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
         #map {
-            height: 100vh;
+            height: 80vh;
             width: 100%;
         }
     </style>
-</head>
+  </head>
 
 <body>
-    <div>
-        <button onclick="addAllMarkers()">All</button>
-        <input type="number" name="start" id="start" placeholder="Start" min="0" max="20">
-        <input type="number" name="end" id="end" placeholder="Finish" min="0" max="20">
-        <button onclick="addMarker()">Shortest Path</button>
-    </div>
-    <div id="map"></div>
+      <div class="m-4">
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h1>Document</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div id="map"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="card">
+                <div class="card-body">
+                  <div class="btn-group mb-4">
+                    <button onclick="addAllMarkers()" href="#" class="btn btn-primary">Show Graph</button>
+                    <button href="#" class="btn btn-primary">Find Shortest Path</button>
+                  </div>
+                  <br>
+                  <label class="form-label">Location :</label>
+                  <div class="input-group mb-3">
+                    <select class="form-select" name="start" id="start">
+                      <option value="0">Maranatha</option>
+                      <option value="1">Terazza</option>
+                      <option value="2">Permata Surya Sumantri</option>
+                      <option value="3">Wibisana</option>
+                      <option value="4">Indomaret</option>
+                      <option value="5">Inti Laut</option>
+                      <option value="6">Circle K</option>
+                      <option value="7">Indomaret</option>
+                      <option value="8">BNP</option>
+                      <option value="9">BCA</option>
+                      <option value="10">Take Ichi Japanese Cafe</option>
+                      <option value="11">Tujuh Sebelas</option>
+                      <option value="12">The Majesty Hotel</option>
+                      <option value="13">Martabak Bolu Golden Bell</option>
+                      <option value="14">SPBU</option>
+                      <option value="15">SM Residence Pasteur</option>
+                      <option value="16">FullMar House</option>
+                      <option value="17">SPBU</option>
+                      <option value="18">Verona Palace</option>
+                      <option value="19">Sugar Rush</option>
+                    </select>
+                    <span class="input-group-text">-></span>
+                    <select class="form-select" name="end" id="end">
+                      <option value="0">Maranatha</option>
+                      <option value="1">Terazza</option>
+                      <option value="2">Permata Surya Sumantri</option>
+                      <option value="3">Wibisana</option>
+                      <option value="4">Indomaret</option>
+                      <option value="5">Inti Laut</option>
+                      <option value="6">Circle K</option>
+                      <option value="7">Indomaret</option>
+                      <option value="8">BNP</option>
+                      <option value="9">BCA</option>
+                      <option value="10">Take Ichi Japanese Cafe</option>
+                      <option value="11">Tujuh Sebelas</option>
+                      <option value="12">The Majesty Hotel</option>
+                      <option value="13">Martabak Bolu Golden Bell</option>
+                      <option value="14">SPBU</option>
+                      <option value="15">SM Residence Pasteur</option>
+                      <option value="16">FullMar House</option>
+                      <option value="17">SPBU</option>
+                      <option value="18">Verona Palace</option>
+                      <option value="19">Sugar Rush</option>
+                    </select>
+                  </div>
+                  <button onclick="addMarker()" href="#" class="btn btn-primary">Calculate Distance</button>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="card">
+                <div class="card-body">
+                  <h2>Daftar Lokasi dari UK. Maranatha</h2>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Path</th>
+                        <th scope="col">Distance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
     <script>
         // Inisialisasi map, simpan di div dengan id 'map'
         var map = L.map("map").setView([-6.88727, 107.58082], 18);
@@ -37,8 +134,26 @@
 
         // Membuat group untuk menyimpan semua marker yang ada di map
         var markers = L.layerGroup().addTo(map);
+
+        // Menentukan Jarak Maranatha ke lokasi lain
+        $.get('http://127.0.0.1:8000/maranatha', function(data) {
+
+          $.each(data.data, function(index, value) {
+
+            $('table tbody').append(
+              '<tr>' +
+                '<th scope="row">'+ index +'</th>' +
+                '<td>' + value.end + '</td>' +
+                '<td>' + value.path + '</td>' +
+                '<td>' + value.distance + '</td>' +
+              '</tr>'
+            );
+          });
+
+        });
     </script>
     <script src="scripts/marker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

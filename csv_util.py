@@ -14,5 +14,18 @@ def read_csv_to_matrix(file):
         # return matrix
         return array
 
+def read_csv_header(file):
+    array = []
+    with open(file) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            # asumsi baris 0 adalah header
+            if line_count == 0:
+                array = row
+            line_count += 1
+        print(f'Processed {line_count} lines.')
+        return array
+
 def write_csv():
     pass

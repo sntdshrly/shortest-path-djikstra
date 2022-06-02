@@ -68,6 +68,13 @@ function addMarker() {
     $.each(data.path, function (i, value) {
       L.marker(nodes[value]).addTo(markers);
     });
+    addPath(data.path);
+  });
+}
+
+function addPath(path) {
+  $.each(path, function (i, value) {
+    L.polygon([nodes[value],nodes[path[i+1]]]).addTo(markers);
   });
 }
 

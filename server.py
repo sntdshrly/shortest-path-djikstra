@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # Import algoritma
-from main import fetchAllNodes, shortestPath
+from main import fetchAllNodes, shortestPath, shortestPathtoAllNode
 
 # Inisialisasi server
 app = FastAPI()
@@ -23,3 +23,6 @@ def list():
 def shortest_path(start: int, end: int):
     return shortestPath(start, end)
 
+@app.get("/maranatha")
+def maranatha():
+    return shortestPathtoAllNode(0)
