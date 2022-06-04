@@ -65,6 +65,7 @@ function addMarker() {
 
   // Meminta data get dari server.py
   $.get(`http://127.0.0.1:8000/path?start=${start}&end=${end}`, function (data) {
+    $('#distance').val(data.distance);
     $.each(data.path, function (i, value) {
       L.marker(nodes[value]).addTo(markers);
     });
