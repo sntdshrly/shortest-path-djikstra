@@ -48,51 +48,9 @@
                   <br>
                   <label class="form-label">Location :</label>
                   <div class="input-group mb-3">
-                    <select class="form-select" name="start" id="start">
-                      <option value="0">Maranatha</option>
-                      <option value="1">Terazza</option>
-                      <option value="2">Permata Surya Sumantri</option>
-                      <option value="3">Wibisana</option>
-                      <option value="4">Indomaret</option>
-                      <option value="5">Inti Laut</option>
-                      <option value="6">Circle K</option>
-                      <option value="7">Indomaret</option>
-                      <option value="8">BNP</option>
-                      <option value="9">BCA</option>
-                      <option value="10">Take Ichi Japanese Cafe</option>
-                      <option value="11">Tujuh Sebelas</option>
-                      <option value="12">The Majesty Hotel</option>
-                      <option value="13">Martabak Bolu Golden Bell</option>
-                      <option value="14">SPBU</option>
-                      <option value="15">SM Residence Pasteur</option>
-                      <option value="16">FullMar House</option>
-                      <option value="17">SPBU</option>
-                      <option value="18">Verona Palace</option>
-                      <option value="19">Sugar Rush</option>
-                    </select>
+                    <select class="form-select" name="start" id="start"></select>
                     <span class="input-group-text">-></span>
-                    <select class="form-select" name="end" id="end">
-                      <option value="0">Maranatha</option>
-                      <option value="1">Terazza</option>
-                      <option value="2">Permata Surya Sumantri</option>
-                      <option value="3">Wibisana</option>
-                      <option value="4">Indomaret</option>
-                      <option value="5">Inti Laut</option>
-                      <option value="6">Circle K</option>
-                      <option value="7">Indomaret</option>
-                      <option value="8">BNP</option>
-                      <option value="9">BCA</option>
-                      <option value="10">Take Ichi Japanese Cafe</option>
-                      <option value="11">Tujuh Sebelas</option>
-                      <option value="12">The Majesty Hotel</option>
-                      <option value="13">Martabak Bolu Golden Bell</option>
-                      <option value="14">SPBU</option>
-                      <option value="15">SM Residence Pasteur</option>
-                      <option value="16">FullMar House</option>
-                      <option value="17">SPBU</option>
-                      <option value="18">Verona Palace</option>
-                      <option value="19">Sugar Rush</option>
-                    </select>
+                    <select class="form-select" name="end" id="end"></select>
                   </div>
                   <button onclick="addMarker()" href="#" class="btn btn-primary">Calculate Distance</button>
                   <div class="input-group mt-4 w-25">
@@ -115,8 +73,7 @@
                         <th scope="col">Distance</th>
                       </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
@@ -139,11 +96,14 @@
         // Membuat group untuk menyimpan semua marker yang ada di map
         var markers = L.layerGroup().addTo(map);
 
-        // Menentukan Jarak Maranatha ke lokasi lain
+        // Menentukan Jarak Maranatha ke lokasi lain (Tabel & Select)
         $.get('http://127.0.0.1:8000/maranatha', function(data) {
 
           $.each(data.data, function(index, value) {
 
+            $('#start').append(new Option(value.end, index));
+            $('#end').append(new Option(value.end, index));
+            
             $('table tbody').append(
               '<tr>' +
                 '<th scope="row">'+ index +'</th>' +

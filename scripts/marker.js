@@ -26,7 +26,8 @@ nodes = [
   [-6.885516, 107.583295],  // FullMar House (H)
   [-6.889073, 107.581652],  // SPBU (S)
   [-6.889166, 107.582127],  // Verona Palace (H)
-  [-6.889154, 107.582271]   // Sugar Rush (R)
+  [-6.889154, 107.582271],  // Sugar Rush (R)
+  [-6.88924 , 107.58168]    // BRI (B)
 ];
 
 
@@ -80,8 +81,8 @@ function addPath(path) {
 }
 
 function calculateDistance(start, finish) {
-  var finalPoint = L.latLng(start[0], start[1]);
-  var startPoint = L.latLng(finish[0], finish[1]);
+  let finalPoint = L.latLng(nodes[start], nodes[start]);
+  let startPoint = L.latLng(nodes[finish], nodes[finish]);
   dist = finalPoint.distanceTo(startPoint);
   return dist;
 }
