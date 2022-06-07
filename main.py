@@ -1,3 +1,4 @@
+from turtle import distance
 from csv_util import read_csv_to_matrix, read_csv_header
 from algoritma import dijkstra, lintasan
 
@@ -28,18 +29,37 @@ def shortestPathtoAllNode(start):
 
     for i in range(len(simpul_dipilih)):
         array.append({
+            'node': i,
             'end': node_names[i],
             'path': lintasan(i, simpul_dipilih[i], simpul_dipilih),
             'distance': simpul_dipilih[i][0]
         })
     
     return {
-        'data': array,
+        'data': sort(array),
         'start': start
     }
 
+def sort(graf, type='asc'):
+    new_graf = []
+    for i in range(len(graf)):
+        j = 0
+        k = 0
+        if  len(new_graf) > 0:
+            while j < len(new_graf) and graf[i]['distance'] > new_graf[j]['distance']:
+                j += 1
+                k = j
+        new_graf.insert(k, {
+            'node': graf[i]['node'],
+            'end': graf[i]['end'],
+            'path': graf[i]['path'],
+            'distance': graf[i]['distance']
+        })
+
+    return new_graf
+
 def main():
-    pass
+    print(sort(shortestPathtoAllNode(0)['data']))
 
 
 if __name__ == '__main__':

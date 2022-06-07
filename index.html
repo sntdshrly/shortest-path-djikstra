@@ -101,12 +101,12 @@
 
           $.each(data.data, function(index, value) {
 
-            $('#start').append(new Option(value.end, index));
-            $('#end').append(new Option(value.end, index));
+            $('#start').append(new Option(value.end, value.node));
+            $('#end').append(new Option(value.end, value.node));
             
             $('table tbody').append(
               '<tr>' +
-                '<th scope="row">'+ index +'</th>' +
+                '<th scope="row">'+ value.node +'</th>' +
                 '<td>' + value.end + '</td>' +
                 '<td>' + value.path + '</td>' +
                 '<td>' + value.distance + '</td>' +
