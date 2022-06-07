@@ -1,4 +1,3 @@
-from turtle import distance
 from csv_util import read_csv_to_matrix, read_csv_header
 from algoritma import dijkstra, lintasan
 
@@ -59,7 +58,7 @@ def sort(graf, type='asc'):
     return new_graf
 
 def main():
-    print(sort(shortestPathtoAllNode(0)['data']))
+    pass
 
 
 if __name__ == '__main__':
